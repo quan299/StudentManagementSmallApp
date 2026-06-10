@@ -15,6 +15,8 @@ public class Main {
             System.out.println("3. Upate student");
             System.out.println("4. Delete student");
             System.out.println("5. Find student by ID");
+            System.out.println("6. Export student's file");
+            System.out.println("7. Import student");
             System.out.println("0. Exit");
             System.out.print("Please choose: ");
 
@@ -70,7 +72,9 @@ public class Main {
                         dao.findById(findid);
                         System.out.println("Student found!");
                         break;
-
+                    case 6 :
+                        dao.exportToCSV("students.csv");
+                        break;
                     case 0:
                         System.out.println("Exit.");
                         return;

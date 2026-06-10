@@ -96,4 +96,28 @@ public class StudentDAO {
             }
         }
     }
+    public void exportToCSV(String filePath) throws Exception {
+        String sql = "SELECT * FROM students";
+
+        try (
+                Connection conn = DatabaseConnection.getConnection();
+                Statement st = conn.createStatement();
+                ResultSet rs = st.executeQuery(sql);
+                java.io.FileWriter writer = new java.io.FileWriter(filePath)
+        ) {
+            writer.write("id,name,age,email\n");
+
+            while (rs.next()) {
+                writer.write(
+                        rs.getInt("id") + "," +
+                                rs.getString("name") + "," +
+                                rs.getInt("age") + "," +
+                                rs.getString("email") + "\n"
+                );
+            }
+
+            System.out.println("File created: " + filePath);
+        }
+    }
+
 }
