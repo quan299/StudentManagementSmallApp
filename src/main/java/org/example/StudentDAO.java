@@ -71,4 +71,29 @@ public class StudentDAO {
             System.out.println("Xóa sinh viên thành công!");
         }
     }
+    public void findById(int id) throws Exception {
+
+        String sql = "SELECT * FROM students WHERE id = ?";
+
+        try (
+                Connection conn = DatabaseConnection.getConnection();
+                PreparedStatement ps = conn.prepareStatement(sql)
+        ) {
+
+            ps.setInt(1, id);
+
+            ResultSet rs = ps.executeQuery();
+
+            if (rs.next()) {
+
+                System.out.println("ID: " + rs.getInt("id"));
+                System.out.println("Tên: " + rs.getString("name"));
+                System.out.println("Tuổi: " + rs.getInt("age"));
+                System.out.println("Email: " + rs.getString("email"));
+
+            } else {
+                System.out.println("Không tìm thấy sinh viên!");
+            }
+        }
+    }
 }

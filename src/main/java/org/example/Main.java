@@ -10,22 +10,23 @@ public class Main {
      Scanner sc = new Scanner(System.in);
         while (true) {
             System.out.println("\n===== STUDENT CRUD =====");
-            System.out.println("1. Thêm sinh viên");
-            System.out.println("2. Xem danh sách");
-            System.out.println("3. Cập nhật sinh viên");
-            System.out.println("4. Xóa sinh viên");
-            System.out.println("0. Thoát");
-            System.out.print("Chọn: ");
+            System.out.println("1. Add student");
+            System.out.println("2. Get and see all students");
+            System.out.println("3. Upate student");
+            System.out.println("4. Delete student");
+            System.out.println("5. Find student by ID");
+            System.out.println("0. Exit");
+            System.out.print("Please choose: ");
 
             int choice = sc.nextInt();
             sc.nextLine();
             try {
                 switch (choice) {
                     case 1:
-                        System.out.print("Tên: ");
+                        System.out.print("Name: ");
                         String name = sc.nextLine();
 
-                        System.out.print("Tuổi: ");
+                        System.out.print("Age: ");
                         int age = sc.nextInt();
                         sc.nextLine();
 
@@ -40,36 +41,42 @@ public class Main {
                         break;
 
                     case 3:
-                        System.out.print("ID cần sửa: ");
+                        System.out.print("ID's student: ");
                         int updateId = sc.nextInt();
                         sc.nextLine();
 
-                        System.out.print("Tên mới: ");
+                        System.out.print("New name: ");
                         String newName = sc.nextLine();
 
-                        System.out.print("Tuổi mới: ");
+                        System.out.print("New age: ");
                         int newAge = sc.nextInt();
                         sc.nextLine();
 
-                        System.out.print("Email mới: ");
+                        System.out.print("Email update: ");
                         String newEmail = sc.nextLine();
 
                         dao.updateStudent(updateId, newName, newAge, newEmail);
                         break;
 
                     case 4:
-                        System.out.print("ID cần xóa: ");
+                        System.out.print("ID needed to be deleted: ");
                         int deleteId = sc.nextInt();
 
                         dao.deleteStudent(deleteId);
                         break;
+                    case 5 :
+                        System.out.println("Enter id");
+                        int findid = sc.nextInt();
+                        dao.findById(findid);
+                        System.out.println("Student found!");
+                        break;
 
                     case 0:
-                        System.out.println("Thoát chương trình.");
+                        System.out.println("Exit.");
                         return;
 
                     default:
-                        System.out.println("Lựa chọn không hợp lệ!");
+                        System.out.println("Invalid choice please try again");
                 }
             }
         catch (Exception e) {
